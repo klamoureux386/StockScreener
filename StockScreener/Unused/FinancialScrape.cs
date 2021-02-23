@@ -4,7 +4,7 @@ using System.Threading;
 using System.Text;
 using HtmlAgilityPack;
 
-namespace StockScreenerApp
+namespace StockScreener.Unused
 {
     public static class FinancialScrape
     {
@@ -28,7 +28,6 @@ namespace StockScreenerApp
 
 
                 var dataNode = page.SelectSingleNode($"//td[contains(string(), \"{data}\") and not(contains(string(), 'Enterprise'))]");
-                //var dataNode = page.SelectSingleNode($"//td[contains(string() = \"{data}\")]");
 
                 if (dataNode == null)
                 {

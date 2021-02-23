@@ -2,9 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using StockScreenerApp.Scraper;
+using StockScreener.Scraper;
 
-namespace StockScreenerApp
+namespace StockScreener
 {
     class Program
     {
@@ -13,8 +13,8 @@ namespace StockScreenerApp
 
             //getAllOtcTickers();
 
-            //List<string> tickerNames = new List<string> { "RAZFF" };
-            List<string> tickerNames = getAllOtcTickers();
+            List<string> tickerNames = new List<string> { "AMZN", "JPM", "XOM", "UNLYF"};
+            //List<string> tickerNames = getAllOtcTickers();
 
             DataScraper scraper = new DataScraper();
 
@@ -23,13 +23,14 @@ namespace StockScreenerApp
                 Console.WriteLine($"Scraping Financials for {ticker}");
                 //Console.WriteLine("Scraping Summary data:");
                 scraper.scrapeData(ticker);
+
                 //Console.WriteLine();
             }
 
             Console.WriteLine();
 
             //Get all stocks where price change is >2% order by descending
-            List<Ticker> filteredList = scraper.tickers.Where(x => x.PercentChange > 2).OrderByDescending(x => x.PercentChange).ToList();
+            List<Ticker> filteredList = scraper.tickers.Where(x => x.PercentChange > 0).OrderByDescending(x => x.PercentChange).ToList();
 
             foreach (Ticker filteredTicker in filteredList) {
 
@@ -50,7 +51,7 @@ namespace StockScreenerApp
 
                 tickers.Add(ticker);
 
-                if (i == 100) { break; }
+                if (i == 50) { break; }
                 //Console.WriteLine($"{i}: {ticker}");
                 i++;
             }
