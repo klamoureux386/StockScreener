@@ -11,6 +11,9 @@ namespace StockScreener
         static void Main(string[] args)
         {
 
+            WebClient.Proxies.scrapeProxies();
+
+            /*
 
             List<string> tickerNames = new List<string> { "AMZN", "JPM", "XOM", "UNLYF"};
             //List<string> tickerNames = getAllOtcTickers();
@@ -35,6 +38,8 @@ namespace StockScreener
 
                 Console.WriteLine(filteredTicker.Name + ": " + filteredTicker.PercentChange);
             }
+
+            */
 
             Console.WriteLine("Done");
 
