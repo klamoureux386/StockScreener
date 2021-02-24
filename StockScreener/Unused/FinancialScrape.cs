@@ -26,7 +26,6 @@ namespace StockScreener.Unused
             foreach (string data in dataToScrape)
             {
 
-
                 var dataNode = page.SelectSingleNode($"//td[contains(string(), \"{data}\") and not(contains(string(), 'Enterprise'))]");
 
                 if (dataNode == null)

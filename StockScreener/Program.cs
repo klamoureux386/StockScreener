@@ -11,7 +11,6 @@ namespace StockScreener
         static void Main(string[] args)
         {
 
-            //getAllOtcTickers();
 
             List<string> tickerNames = new List<string> { "AMZN", "JPM", "XOM", "UNLYF"};
             //List<string> tickerNames = getAllOtcTickers();

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StockScreener.Scraper {
+namespace StockScreener.WebClient {
     public static class UserAgents {
 
-        private static List<string> userAgents = new List<string>()
+        private static string[] userAgents = new string[]
         {
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
@@ -26,9 +26,9 @@ namespace StockScreener.Scraper {
             Random rnd = new Random();
 
             //Get random integer between 0 (inclusive) and userAgent length (not-inclusive)
-            int randomIndex = rnd.Next(userAgents.Count);
+            int randomIndex = rnd.Next(userAgents.Length);
 
-            if (randomIndex < userAgents.Count)
+            if (randomIndex < userAgents.Length)
                 return userAgents[randomIndex];
 
             return userAgents[0];
