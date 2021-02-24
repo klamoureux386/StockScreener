@@ -8,7 +8,7 @@ namespace StockScreener.WebClient {
     public static class Proxies {
 
         private static bool Debug = false;
-        private static List<string> proxies = new List<string>{"150.239.66.81"};
+        private static List<string> proxies = new List<string>();
 
         public static void scrapeProxies() {
 

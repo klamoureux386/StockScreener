@@ -17,6 +17,7 @@ namespace StockScreener.WebClient {
             };
 
             string randomUserAgent = UserAgents.getRandomUserAgent();
+            WebProxy randomProxy = Proxies.getRandomProxy();
 
             var web = new HtmlWeb();
 
@@ -36,7 +37,7 @@ namespace StockScreener.WebClient {
                 request.Headers["Upgrade-Insecure-Requests"] = "1";
                 request.Timeout = 5000; //Timeout after 5 seconds
 
-                request.Proxy = Proxies.getRandomProxy();
+                request.Proxy = randomProxy;
 
                 return true;
             };

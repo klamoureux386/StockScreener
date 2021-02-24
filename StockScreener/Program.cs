@@ -11,22 +11,19 @@ namespace StockScreener
         static void Main(string[] args)
         {
 
+            //Scrape proxies to be used in this scrape session
             WebClient.Proxies.scrapeProxies();
 
-            /*
-
-            List<string> tickerNames = new List<string> { "AMZN", "JPM", "XOM", "UNLYF"};
-            //List<string> tickerNames = getAllOtcTickers();
+            //List<string> tickerNames = new List<string> { "AMZN", "JPM", "XOM", "UNLYF"};
+            List<string> tickerNames = getAllOtcTickers();
 
             DataScraper scraper = new DataScraper();
 
             foreach (string ticker in tickerNames)
             {
                 Console.WriteLine($"Scraping Financials for {ticker}");
-                //Console.WriteLine("Scraping Summary data:");
                 scraper.scrapeData(ticker);
-
-                //Console.WriteLine();
+                Console.WriteLine("-----------------------------------------------------------");
             }
 
             Console.WriteLine();
@@ -39,8 +36,6 @@ namespace StockScreener
                 Console.WriteLine(filteredTicker.Name + ": " + filteredTicker.PercentChange);
             }
 
-            */
-
             Console.WriteLine("Done");
 
         }
@@ -49,15 +44,25 @@ namespace StockScreener
 
             List<string> tickers = new List<string>();
 
-            int i = 0;
+            int AMOUNT_OF_TICKERS_TAKEN = 0; //can get rid of this when we're ready
+
+            int currentLine = 1;
 
             foreach (var ticker in File.ReadLines(@"C:\Users\Halifex\Documents\StockScreener\StockScreener\OTCBB.txt")) {
 
-                tickers.Add(ticker);
+                //add every fifth line
+                if (currentLine % 25 == 0)
+                {
 
-                if (i == 50) { break; }
-                //Console.WriteLine($"{i}: {ticker}");
-                i++;
+                    tickers.Add(ticker);
+
+                    if (AMOUNT_OF_TICKERS_TAKEN == 50) { break; }
+                    //Console.WriteLine($"{i}: {ticker}");
+                    AMOUNT_OF_TICKERS_TAKEN++;
+
+                }
+
+                currentLine++;
             }
 
             return tickers;

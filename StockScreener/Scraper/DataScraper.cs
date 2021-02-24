@@ -36,9 +36,26 @@ namespace StockScreener.Scraper
 
             string addressToLoad = $"https://finance.yahoo.com/quote/{ticker}";
 
+            if (Debug) { Console.WriteLine($"Creating WebClient for {ticker}"); }
+
             HtmlWeb web = WebClient.WebClient.CreateClientForRequest(addressToLoad);
 
-            var summary = web.Load(addressToLoad);
+            if (Debug) { Console.WriteLine($"Loading address {addressToLoad}"); }
+
+            HtmlDocument summary = null;
+
+            try
+            {
+                summary = web.Load(addressToLoad);
+            }
+            catch (Exception ex) {
+
+                Console.WriteLine($"Unable to load {addressToLoad}, exception:");
+                Console.WriteLine(ex.Message);
+                System.Environment.Exit(0);
+            }
+
+
 
             if (web.ResponseUri.ToString() == addressToLoad)
             {
@@ -75,8 +92,11 @@ namespace StockScreener.Scraper
 
             Random randomSleep = new Random();
 
+            int randomInt = randomSleep.Next(1, 30);
+
+            Console.WriteLine($"Sleeping for {randomInt}ms");
             //Sleep for random int between 1-30ms
-            Thread.Sleep(randomSleep.Next(1, 30));
+            Thread.Sleep(randomInt);
 
         }
 
